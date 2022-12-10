@@ -23,6 +23,16 @@ const handleConnection = (socket) => {
   console.log(socket)
 }
 
-wsServer.on("connection", handleConnection)
+wsServer.on("connection", (socket) => {
+  console.log("Connected to browser");
+  socket.on("close", () => console.log("disconnected from browser"));
+  socket.on("message", (msg) => {
+    console.log(msg.toString());
+  });
+
+
+  socket.send("Hello!");
+
+});
 
 server.listen(3000, handleListen)
