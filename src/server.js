@@ -17,7 +17,12 @@ const handleListen = () => console.log("Listening on http://localhost:3000/")
 // app.listen(3000, handleListen);
 
 const server = http.createServer(app);
-
 const wsServer = new WebSocket.Server({server});
+
+const handleConnection = (socket) => {
+  console.log(socket)
+}
+
+wsServer.on("connection", handleConnection)
 
 server.listen(3000, handleListen)
